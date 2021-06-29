@@ -8,3 +8,4 @@ export {MUT_USER_LOGIN,
 		MUT_ADD_AGREE,
 		MUT_ADD_DISAGREE,
 		} from "./mutation";
+export {SUB_SUBSCRIBE_CARD} from './subscription';

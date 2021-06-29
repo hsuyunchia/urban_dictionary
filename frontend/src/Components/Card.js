@@ -3,13 +3,12 @@ import { createChainedFunction, Typography } from "@material-ui/core";
 import { ThumbUp, ThumbDown } from "@material-ui/icons";
 import { Space, Input, Button } from "antd";
 import { NavLink, useLocation} from "react-router-dom";
-import { useMutation } from "@apollo/react-hooks";
-import { yellow } from "@material-ui/core/colors";
+import { useMutation, useSubscription } from "@apollo/react-hooks";
 
 import "../App.css";
 import { UserInfo } from "../App";
 import PublishBtn from "./PublisheBtn";
-import { MUT_ADD_AGREE, MUT_ADD_DISAGREE } from "../graphql";
+import { MUT_ADD_AGREE, MUT_ADD_DISAGREE, SUB_SUBSCRIBE_CARD } from "../graphql";
 import Message from "../Hooks/Message";
 
 const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_users, disagree_users, create_date, published}) => {
@@ -26,6 +25,20 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 
 	const [add_agree] = useMutation(MUT_ADD_AGREE);
 	const [add_disagree] = useMutation(MUT_ADD_DISAGREE);
+
+	const { data, loading } = useSubscription(
+		SUB_SUBSCRIBE_CARD,
+		{variables: {post_id}}
+	);
+	
+	useEffect(()=>{
+		if(data){
+			if(data.subscribeCard.success){
+				setAgreeList(data.subscribeCard.agree_users);
+				setDisgreeList(data.subscribeCard.disagree_users);
+			}
+		}
+	}, [data, loading])
 	
 	useEffect(() => {
 		let fat = false;
