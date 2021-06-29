@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Web Programming Final
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Group 45 程式辭典
 
-## Available Scripts
+成員：B07902012 江宗翰、B07705004 許芸嘉、B07902019 江浩瑋
 
-In the project directory, you can run:
+###### 此服務內容
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+###### Demo 影片連結
 
-### `yarn test`
+.....
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+###### Deployed 連結
 
-### `yarn build`
+........
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+###### Client 端使用 / 操作方式
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+###### Server 端使用 / 操作方式
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**local 安裝、執行步驟：**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. `cd frontend` 至前端資料夾，`yarn` 安裝套件。
+2. `cd backend` 至後端資料夾，`yarn` 安裝套件。
+3. 在後端資料夾新增`.env` 檔案，可參考`.env.defaults` 檔，傳入`MONGO_URL` 參數。
+4. 回到外層資料夾，`yarn server` 跑後端程式碼，印出 "Mongo database connected!" 訊息，表示成功。
+5. 開另一個 command line，`yarn start` 跑前端程式。
 
-## Learn More
+###### local 測試步驟：
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+###### 其他說明
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+###### 使用與參考之框架/模組/原始碼
 
-### Analyzing the Bundle Size
+###### 使用之第三方套件、框架、程式碼
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+###### 專題製作心得
 
-### Making a Progressive Web App
+###### 各組員之負責項目 (請詳述)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###### (Optional) 對於此課程的建議
