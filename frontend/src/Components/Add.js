@@ -27,6 +27,8 @@ const Add = () => {
 			<Redirect exact={true} from="/add" to={{pathname: "/add/notLogin", state: {wordToBeDefine: check.state.wordToBeDefine}}} />
 		);
 	}
+	console.log(userInfo.penName);
+	console.log(typeof(userInfo.penName));
 	if(!userInfo.penName){
 		return(
 			<div className="add">

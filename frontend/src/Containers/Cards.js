@@ -16,8 +16,10 @@ const Cards = ({data}) => {
 		const numb = b.props.agree_users.length - b.props.disagree_users.length;
 		if(numa !== numb)
 			return numb - numa;
-		else
+		else if(b.props.agree_users.length !== a.props.agree_users.length)
 			return b.props.agree_users.length - a.props.agree_users.length;
+		else
+			return a.props.disagree_users.length - b.props.disagree_users.length
 	}
 	for(let i = 0; i < num; i++){
 		// console.log(i,data[i].if_publish);

@@ -58,14 +58,18 @@ function App() {
       setAllOptions(sub.data.newVocabOptions);
       setOptions(sub.data.newVocabOptions)
     }
-  }, [sub.data])
+  }, [sub.data]);
+
+  const cmp = (a, b) => {
+    return a.value - b.value;
+  }
 
   const onsearch = (value)=>{
     setSearchWord(value);
     const op = allOptions.filter((obj)=>{
       return obj.value.includes(value)
     });
-    op.sort();
+    op.sort(cmp);
     let ataru = 0;
     for(let i = 0; i < op.length; i++){
       if(op[i].value === value){
@@ -81,7 +85,10 @@ function App() {
           opp.push(op[i]);
         }
       }
+      console.log("op", op[0].value - op[1].value);
+      console.log("tt", typeof(op[0].value));
     }
+    console.log("onsearch");
     setOptions(opp);
   }
 
@@ -159,6 +166,7 @@ function App() {
                       else{
                         onsearch(searchWord);
                       }
+                      console.log("onfocus");
                     }}
                     onSearch={onsearch}
                     onSelect={(term) => {
