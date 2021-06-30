@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { NavLink, Switch, Route, Redirect } from "react-router-dom";
+import Message from '../Hooks/Message';
+import { NavLink } from "react-router-dom";
 
 
 const CLIENT_ID = '696468782740-2vesa30iij2dnu0hkn4e0vflehu240hk.apps.googleusercontent.com';
@@ -39,11 +40,11 @@ class GoogleBtn extends Component {
   }
 
   handleLoginFailure (response) {
-    alert('登入失敗')
+    Message({status:'warning', msg:'登入失敗'})
   }
 
   handleLogoutFailure (response) {
-    alert('登出失敗')
+    Message({status:'warning', msg:'登出失敗'})
   }
 
   render() {
@@ -59,6 +60,7 @@ class GoogleBtn extends Component {
         />
         </NavLink>: <GoogleLogin
           clientId={ CLIENT_ID }
+          isLogined={true}
           buttonText='以GOOGLE登入'
           onSuccess={ this.props.login }
           onFailure={ this.handleLoginFailure }
