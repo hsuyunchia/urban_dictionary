@@ -19,9 +19,9 @@ const Home = () => {
 			console.log("home unmouted");
 		});
 	}, [data]);
-	console.log("data", data);
-	console.log("error", error);
-	console.log("loading", loading);
+	// console.log("data", data);
+	// console.log("error", error);
+	// console.log("loading", loading);
 	if(!data){
 		return(
 			<div id="content">

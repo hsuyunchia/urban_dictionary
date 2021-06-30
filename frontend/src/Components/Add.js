@@ -16,10 +16,10 @@ const Add = () => {
 	
 	let history = useHistory();
 	const check = useLocation();
-	console.log("check", check);
+	// console.log("check", check);
 	const userInfo = useContext(UserInfo);
 	userInfo.setHideInput(true);
-	console.log("[User] UserInfo", userInfo);
+	// console.log("[User] UserInfo", userInfo);
 	if(!userInfo.email){
 		return(
 			<Redirect exact={true} from="/add" to={{pathname: "/add/notLogin", state: {wordToBeDefine: check.state.wordToBeDefine}}} />
@@ -94,9 +94,9 @@ const Add = () => {
 			}
 		}
 	}
-	console.log("vocab", vocab);
+	// console.log("vocab", vocab);
 	if(check.state){
-		console.log("check.state.wordToBeDefine", check.state.wordToBeDefine);
+		// console.log("check.state.wordToBeDefine", check.state.wordToBeDefine);
 		if(vocab !== check.state.wordToBeDefine && check.state.wordToBeDefine !== undefined){
 			setVocab(check.state.wordToBeDefine);
 		}

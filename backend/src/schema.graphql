@@ -17,6 +17,7 @@ type Query{
     queryById(id: ID!): Post!
     queryMyPost( email: String!): [Post!]
     randomFivePosts(number: Int): [Post!]
+    getVocabOptions(number: Int): [OptionOutput!]
 }
 
 type Subscription{
@@ -53,4 +54,8 @@ type AgreeOutput{
     success:Boolean!
     agree_users: [String]
     disagree_users: [String]
+}
+
+type OptionOutput{
+    value:String!
 }

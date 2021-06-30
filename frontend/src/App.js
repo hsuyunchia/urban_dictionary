@@ -1,11 +1,11 @@
 import "./App.css";
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { NavLink, Switch, Route, BrowserRouter, Redirect, useHistory } from "react-router-dom";
 import { MUT_USER_LOGIN } from "./graphql";
 import { Button } from "@material-ui/core";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Space, Input, AutoComplete } from "antd";
-import { QUE_QUERY_BY_STRING } from "./graphql";
+import { QUE_GET_VOCAB_OPTIONS } from "./graphql";
 
 import Add from "./Components/Add";
 import NotLogin from "./Components/NotLogin";
@@ -31,6 +31,26 @@ function App() {
   const [searchWord, setSearchWord]=useState("");
 	const [isLogin, setisLogin]=useState(false);
   const [hideInput, setHideInput] = useState(false);
+  const [allOptions, setAllOptions] = useState([])
+  const [options, setOptions] = useState(allOptions)
+  const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS);
+
+  useEffect(()=>{
+    if(data){
+      setAllOptions(data.getVocabOptions);
+      setOptions(data.getVocabOptions);
+    }
+  }
+  , [data])
+
+  const onsearch = (value)=>{
+    setSearchWord(value);
+    const op = allOptions.filter((obj)=>{
+      return obj.value.includes(value)
+    })
+    console.log("options", op)
+    setOptions(op);
+  }
 
 	const login = async (googleUser) => {
 		const profile = googleUser.getBasicProfile();
@@ -38,8 +58,8 @@ function App() {
 		setuserEmail(profile.getEmail());
     setImageUrl(profile.getImageUrl());
 		setisLogin(true);
-    const {data} = await startLogin({variables: {name: profile.getName(), email: profile.getEmail()}});
-    setuserpenName(data.userLogin.penName);
+    const res = await startLogin({variables: {name: profile.getName(), email: profile.getEmail()}});
+    setuserpenName(res.data.userLogin.penName);
   }
 
 	const logout = () => {
@@ -52,8 +72,8 @@ function App() {
 	}
 
   const queryAgain = async () => {
-		const {data} = await startLogin({variables: {name: userName, email: userEmail}});
-    setuserpenName(data.userLogin.penName);
+		const res = await startLogin({variables: {name: userName, email: userEmail}});
+    setuserpenName(res.data.userLogin.penName);
 	}
 
   return (
@@ -83,16 +103,12 @@ function App() {
               ? <></>
               : <div className="row-bar">
                 <Route render={({history}) => (
-                  <Input.Search
+                  <AutoComplete
                     className="search-bar"
-                    placeholder="嗨？ 想找甚麼ㄋ？"
-                    enterButton="搜尋"
-                    size="large"
                     value={searchWord}
-                    onChange={(e) => {
-                      setSearchWord(e.target.value);
-                    }}
-                    onSearch={(term) => {
+                    options={options}
+                    onSearch={onsearch}
+                    onSelect={(term) => {
                       if(term.length===0){
                         Message({status: "warning", msg: "請輸入搜尋內容！"});
                         return;
@@ -107,8 +123,56 @@ function App() {
                         },
                       });
                       setSearchWord("");
+                      setOptions(allOptions);
                     }}
-                  ></Input.Search>
+                  >
+                    <Input.Search size="large" placeholder="嗨？ 想找甚麼ㄋ？" className="search-bar"
+                      onSearch={(term) => {
+                        if(term.length===0){
+                          Message({status: "warning", msg: "請輸入搜尋內容！"});
+                          return;
+                        }
+                        const path = "/define/" + term;
+                        history.push({
+                          pathname: path,
+                          state: {
+                            pen: userpenName,
+                            name: userName,
+                            email: userEmail,
+                          },
+                        });
+                        setSearchWord("");
+                        setOptions(allOptions);
+                      }}
+                    enterButton />
+                  </AutoComplete>
+
+                  // <Input.Search
+                  //   className="search-bar"
+                  //   placeholder="嗨？ 想找甚麼ㄋ？"
+                  //   enterButton="搜尋"
+                  //   size="large"
+                  //   value={searchWord}
+                  //   onChange={(e) => {
+                  //     setSearchWord(e.target.value);
+                  //   }}
+                  //   onSearch={(term) => {
+                  //     if(term.length===0){
+                  //       Message({status: "warning", msg: "請輸入搜尋內容！"});
+                  //       return;
+                  //     }
+                  //     const path = "/define/" + term;
+                  //     history.push({
+                  //       pathname: path,
+                  //       state: {
+                  //         pen: userpenName,
+                  //         name: userName,
+                  //         email: userEmail,
+                  //       },
+                  //     });
+                  //     setSearchWord("");
+                  //   }}
+                  // ></Input.Search>
                 )} />
               </div>
             }

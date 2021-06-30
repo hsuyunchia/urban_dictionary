@@ -10,10 +10,10 @@ const PublishBtn = ({Published, id, modifyLink}) => {
     const [published, setpublished] = useState(Published);
 	const [startPub] = useMutation(MUT_PUBLISH_POST);
 	const [startUnpub] = useMutation(MUT_UNPUBLISH_POST);
-    console.log(id);
+    // console.log(id);
     const unpubHandler = async () => {
         const { data } = await startUnpub({variables:{ptid: id}});
-        console.log(data);
+        // console.log(data);
         if(data.unpublishPost.success){
             Message({status: "success", msg: data.unpublishPost.message});
             setpublished(false);
@@ -25,7 +25,7 @@ const PublishBtn = ({Published, id, modifyLink}) => {
 
     const pubHandler = async () => {
         const { data } = await startPub({variables: {ptid: id}});
-        console.log(data);
+        // console.log(data);
         if(data.publishPost.success){
             Message({status: "success", msg: data.publishPost.message});
             setpublished(true);
