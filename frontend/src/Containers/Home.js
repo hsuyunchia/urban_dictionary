@@ -10,14 +10,11 @@ const Home = () => {
 	const [List, setList] = useState([]);
 	const userInfo = useContext(UserInfo);
 
-	userInfo.setHideInput(false);
+	//
 	const { loading, error, data } = useQuery(QUE_RANDOM_FIVE_POSTS, {variables: {number: 0}, fetchPolicy: "cache-and-network"});
-	const check = useLocation();
+	useEffect(()=>{userInfo.setHideInput(false);},[])
 	useEffect(() => {
 		if(data) setList(data.randomFivePosts);
-		return(() => {
-			console.log("home unmouted");
-		});
 	}, [data]);
 	// console.log("data", data);
 	// console.log("error", error);

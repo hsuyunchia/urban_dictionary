@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { NavLink, Redirect, useLocation, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { Button } from "@material-ui/core";
@@ -18,8 +18,8 @@ const Add = () => {
 	const check = useLocation();
 	// console.log("check", check);
 	const userInfo = useContext(UserInfo);
-	userInfo.setHideInput(true);
-	// console.log("[User] UserInfo", userInfo);
+	useEffect(()=>{userInfo.setHideInput(true);},[])
+	//console.log("[User] UserInfo", userInfo);
 	if(!userInfo.email){
 		return(
 			<Redirect exact={true} from="/add" to={{pathname: "/add/notLogin", state: {wordToBeDefine: check.state.wordToBeDefine}}} />

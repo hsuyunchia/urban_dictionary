@@ -10,9 +10,8 @@ const Define = () => {
 	const [List, setList] = useState([]);
 	const { term } = useParams();
 	const userInfo = useContext(UserInfo);
-
-	userInfo.setHideInput(false);
 	const { loading, error, data } = useQuery(QUE_QUERY_BY_VOCABULARY, {variables: {vocabulary: term}, fetchPolicy: "network-only"});
+	useEffect(()=>{userInfo.setHideInput(false);},[])
 	useEffect(() => {
 		if(data) setList(data.queryByVocabulary);
 		return(() => {

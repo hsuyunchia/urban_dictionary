@@ -11,7 +11,6 @@ import { MUT_MODIFY_POST, QUE_QUERY_BY_ID } from "../graphql";
 const Modify = () => {
 	const { postid } = useParams();
     const userInfo = useContext(UserInfo);
-	userInfo.setHideInput(true);
 
     const { loading, error, data } = useQuery(QUE_QUERY_BY_ID, {variables: {id: postid}, fetchPolicy: "cache-and-network"});
     const [modPost] = useMutation(MUT_MODIFY_POST);
@@ -19,6 +18,7 @@ const Modify = () => {
 	const [explanation, setExplanation] = useState("");
 	const [example, setExample] = useState("");
 	let history = useHistory();
+	useEffect(()=>{userInfo.setHideInput(true);},[])
 
     useEffect(() => {
         if(data){

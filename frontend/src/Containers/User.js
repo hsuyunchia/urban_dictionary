@@ -11,7 +11,7 @@ import { UserInfo } from "../App";
 
 function User ({afunction}){
 	const userInfo = useContext(UserInfo);
-	userInfo.setHideInput(true);
+	
 
 	const [startModPen] = useMutation(MUT_MODIFY_PEN_NAME);
 
@@ -20,7 +20,7 @@ function User ({afunction}){
 	// const [Pen, setPen]=useState(userInfo.pen);
 	const [changePenName, setChanegPenName] = useState(false);
 
-	// useEffect(()=>{if(check.state && check.state.pen)setPen(check.state.pen); return(()=>{console.log("unmountede",hi)})},[check])
+	useEffect(()=>{userInfo.setHideInput(true);},[])
 	
 	if(!userInfo.email){
 		return(
