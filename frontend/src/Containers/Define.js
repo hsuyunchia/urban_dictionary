@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { NavLink, useParams, useLocation } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import Cards from "../Containers/Cards";
 import { QUE_QUERY_BY_VOCABULARY } from "../graphql";
@@ -27,10 +28,19 @@ const Define = () => {
 	}
 	if(!List.length){
 		return(
-			<div className="cant-find">
-				<p id="general-title">ㄟ(￣▽￣ㄟ) 找不到 找不到 (ㄏ￣▽￣)ㄏ</p>
-				<NavLink to={{pathname: "/add", state: {wordToBeDefine: term}}}><button className="botton">來去定義 {term}</button></NavLink>
+			<div className="add">
+			<div className="add-close">
+				<NavLink to="/home">
+					<Button variant="contained" color="primary" className="botton" >回首頁</Button>
+				</NavLink>
 			</div>
+			<div className="add-title" style={{marginTop:"5rem"}}>
+                <p>ㄟ(￣▽￣ㄟ) 找不到 找不到 (ㄏ￣▽￣)ㄏ</p>
+				<NavLink to={{pathname: "/add", state: {wordToBeDefine: term}}}>
+						<u style={{color:"#cbdce7", fontSize:"24px"}}>來去定義   {term}</u>
+				</NavLink>
+			</div>
+		</div>
 		);
 	}
 	return(
