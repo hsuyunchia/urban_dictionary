@@ -113,16 +113,16 @@ function App() {
                         Message({status: "warning", msg: "請輸入搜尋內容！"});
                         return;
                       }
-                      const path = "/define/" + term;
-                      history.push({
-                        pathname: path,
-                        state: {
-                          pen: userpenName,
-                          name: userName,
-                          email: userEmail,
-                        },
-                      });
-                      setSearchWord("");
+                      // const path = "/define/" + term;
+                      // history.push({
+                      //   pathname: path,
+                      //   state: {
+                      //     pen: userpenName,
+                      //     name: userName,
+                      //     email: userEmail,
+                      //   },
+                      // });
+                      setSearchWord(term);
                       setOptions(allOptions);
                     }}
                   >
