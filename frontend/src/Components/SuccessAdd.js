@@ -1,14 +1,15 @@
 import { NavLink,  Redirect } from "react-router-dom";
-import { Button } from '@material-ui/core';
-import { UserInfo } from '../App'
-import { useContext } from 'react';
+import { Button } from "@material-ui/core";
+import { UserInfo } from "../App";
+import { useContext, useEffect } from "react";
 
 const SuccessAdd = ()=>{
 	const userInfo = useContext(UserInfo);
 
-	userInfo.setHideInput(true);
-	// userInfo.setSearchWord("");
-
+	useEffect(() => {
+		userInfo.setHideInput(true);
+		userInfo.setSearchWord("");
+	}, []);
 	if(!userInfo.email){
 		return(
 			<Redirect exact={true} from="/add/success" to="/home" />

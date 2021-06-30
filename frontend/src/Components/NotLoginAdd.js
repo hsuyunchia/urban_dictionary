@@ -10,8 +10,8 @@ const NotLogin = () => {
 	const check = useLocation();
 	useEffect(() => {
 		userInfo.setHideInput(true);
-		// userInfo.setSearchWord("");
-	});
+		userInfo.setSearchWord("");
+	}, []);
 
 	return(
 		userInfo.email

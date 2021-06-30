@@ -14,7 +14,8 @@ const Home = () => {
 	const { loading, error, data } = useQuery(QUE_RANDOM_FIVE_POSTS, {variables: {number: 0}, fetchPolicy: "cache-and-network"});
 	useEffect(() => {
 		userInfo.setHideInput(false);
-	});
+		userInfo.setSearchWord("");
+	}, []);
 	useEffect(() => {
 		if(data) setList(data.randomFivePosts);
 	}, [data]);

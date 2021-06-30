@@ -9,8 +9,8 @@ const NotLogin = () => {
 	const userInfo = useContext(UserInfo);
 	useEffect(() => {
 		userInfo.setHideInput(true);
-		// userInfo.setSearchWord("");
-	});
+		userInfo.setSearchWord("");
+	}, []);
 
 	return(
 		userInfo.email

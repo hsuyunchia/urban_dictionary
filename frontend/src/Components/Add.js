@@ -19,8 +19,8 @@ const Add = () => {
 	const userInfo = useContext(UserInfo);
 	useEffect(() => {
 		userInfo.setHideInput(true);
-		// userInfo.setSearchWord("");
-	});
+		userInfo.setSearchWord("");
+	}, []);
 	//console.log("[User] UserInfo", userInfo);
 	if(!userInfo.email){
 		return(

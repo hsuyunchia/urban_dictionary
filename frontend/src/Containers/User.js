@@ -22,8 +22,8 @@ function User ({afunction}){
 
 	useEffect(() => {
 		userInfo.setHideInput(false);
-		// userInfo.setSearchWord("");
-	});
+		userInfo.setSearchWord("");
+	}, []);
 	
 	if(!userInfo.email){
 		return(

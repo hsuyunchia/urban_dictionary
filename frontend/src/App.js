@@ -96,7 +96,7 @@ function App() {
 
   return (
 		<BrowserRouter>
-      <UserInfo.Provider value={{name: userName, email: userEmail, penName:userpenName, setPenName:setuserpenName, setHideInput}}>
+      <UserInfo.Provider value={{name: userName, email: userEmail, penName:userpenName, setPenName:setuserpenName, setHideInput, setSearchWord}}>
         <div className="background">
           <div className="header">
             <div className="row-title">
@@ -127,8 +127,13 @@ function App() {
                     options={options}
                     ref={autocomplete}
                     onFocus={() => {
-                      console.log("onFocus", autocomplete.current.value);
-
+                      // console.log("onFocus", autocomplete.current.value);
+                      if(searchWord.length===0){
+                        setOptions(allOptions);
+                      }
+                      else{
+                        onsearch(searchWord);
+                      }
                     }}
                     onSearch={onsearch}
                     onSelect={(term) => {
