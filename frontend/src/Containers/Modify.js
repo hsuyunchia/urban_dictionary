@@ -32,7 +32,6 @@ const Modify = () => {
 	// console.log("error in mod", error);
 	// console.log("loading", loading);
 	if((!loading && data && data.queryById.author.email !== userInfo.email)){
-        console.log("case A");
         return <Redirect to="/home" />;
     }
 	
@@ -96,12 +95,12 @@ const Modify = () => {
 				來修改你的詞語吧！ 
 			</div>
 			<div className="add-form">
-				<div className="title">想定義什麼詞呢? (必填)</div>
-				<Input placeholder="想定義什麼詞呢?" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value.trim());}}></Input>
-				<div className="title">它代表什麼意思? (必填)</div>
-				<Input.TextArea placeholder="它代表什麼意思?" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value.trim());}}></Input.TextArea>
-				<div className="title">造一個句子吧！ (必填)</div>
-				<Input.TextArea placeholder="造一個句子吧！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value.trim());}}></Input.TextArea>
+				<div className="title">你ㄉ詞語 (必填)</div>
+				<Input placeholder="不可以空白！" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value.trim());}}></Input>
+				<div className="title">它ㄉ解釋 (必填)</div>
+				<Input.TextArea placeholder="不可以空白！" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value.trim());}}></Input.TextArea>
+				<div className="title">一ㄍ例句 (必填)</div>
+				<Input.TextArea placeholder="不可以空白！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value.trim());}}></Input.TextArea>
 				{/* <div className="title">為它新增一些標籤吧~</div>
 				<Input.TextArea placeholder="為它新增一些標籤吧！" rows={2} className="input"></Input.TextArea> */}
 				<div className="footer">
