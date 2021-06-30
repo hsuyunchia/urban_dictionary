@@ -46,15 +46,15 @@ const Add = () => {
 	const handleCreate = async () => {
 		let msg = "請填寫 ";
 		let ok = true;
-		if(vocab.length === 0){
+		if(vocab.trim().length === 0){
 			msg += "   詞語";
 			ok = false;
 		}
-		if(explanation.length === 0){
+		if(explanation.trim().length === 0){
 			msg += "   解釋";
 			ok = false;
 		}
-		if(example.length === 0){
+		if(example.trim().length === 0){
 			msg += "   例句";
 			ok = false;
 		}
@@ -65,13 +65,13 @@ const Add = () => {
 			const res = await addPost({
 				variables: {
 					email: userInfo.email,
-					vocabulary: vocab,
-					explanation,
-					example
+					vocabulary: vocab.trim(),
+					explanation: explanation.trim(),
+					example: example.trim()
 				}
 			})
 			if(res.data.createPost){
-				if(res.data.createPost.vocabulary === vocab){
+				if(res.data.createPost.vocabulary === vocab.trim()){
 					setVocab("");
 					setExplanation("");
 					setExample("");
@@ -107,11 +107,11 @@ const Add = () => {
 			</div>
 			<div className="add-form">
 				<div className="title">想定義什麼詞語呢？ (必填)</div>
-				<Input placeholder="想定義什麼詞語呢?" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value.trim());}}></Input>
+				<Input placeholder="想定義什麼詞語呢?" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value);}}></Input>
 				<div className="title">它的解釋是什麼呢？ (必填)</div>
-				<Input.TextArea placeholder="它的解釋是什麼呢?" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value.trim());}}></Input.TextArea>
+				<Input.TextArea placeholder="它的解釋是什麼呢?" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value);}}></Input.TextArea>
 				<div className="title">造一個例句吧！ (必填)</div>
-				<Input.TextArea placeholder="造一個例句吧！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value.trim());}} ></Input.TextArea>
+				<Input.TextArea placeholder="造一個例句吧！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value);}} ></Input.TextArea>
 				{/* <div className="title">為它新增一些標籤吧~</div>
 				<Input.TextArea placeholder="為它新增一些標籤吧！" rows={2} className="input"></Input.TextArea> */}
 				<div className="footer">

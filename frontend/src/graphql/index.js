@@ -19,4 +19,4 @@ export {
 	MUT_ADD_DISAGREE,
 } from "./mutation";
 
-export {SUB_SUBSCRIBE_CARD} from './subscription';
+export {SUB_SUBSCRIBE_CARD, SUB_NEW_VOCAB_OPTIONS} from './subscription';

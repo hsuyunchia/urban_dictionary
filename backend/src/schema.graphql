@@ -22,6 +22,7 @@ type Query{
 
 type Subscription{
     subscribeCard( post_id:String! ): AgreeOutput!
+    newVocabOptions( number: Int ): [OptionOutput!]
 }
 
 type Post{

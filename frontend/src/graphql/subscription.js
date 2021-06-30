@@ -11,3 +11,11 @@ export const SUB_SUBSCRIBE_CARD = gql`
         }
     }
 `
+export const SUB_NEW_VOCAB_OPTIONS = gql`
+    subscription{
+        newVocabOptions(number:0)
+        {
+            value
+        }
+    }
+`

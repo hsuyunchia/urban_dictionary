@@ -39,7 +39,7 @@ const Mutation = {
     },
 
     // 檢查某些欄位非空，存入DB
-    async createPost(parent, {email, vocabulary, explanation, example, tags}, { db }, info){
+    async createPost(parent, {email, vocabulary, explanation, example, tags}, { db, pubsub }, info){
         const user_id = await db.UserModel.findOne({email})
         var dt = new Date();
         dt = String(dt).substring(4, 15)
@@ -53,7 +53,19 @@ const Mutation = {
                 disagree_users: [], 
                 create_date: dt
             })
-            return await tmp.save();
+            const res = await tmp.save();
+
+            const op = await db.PostModel.aggregate( [
+                { $match: { if_publish: true }},
+                { $group : { _id : "$vocabulary" } } 
+            ])
+            const options = []
+            op.map((dict)=>{
+                options.push({value: dict._id})
+            })
+            pubsub.publish('NEW_OPTIONS', {newVocabOptions: options})
+
+            return res
         }
         else {
             const tmp = new db.PostModel({
@@ -64,7 +76,19 @@ const Mutation = {
                 disagree_users: [], 
                 create_date: dt
             })
-            return await tmp.save();
+            const res = await tmp.save();
+
+            const op = await db.PostModel.aggregate( [
+                { $match: { if_publish: true }},
+                { $group : { _id : "$vocabulary" } } 
+            ])
+            const options = []
+            op.map((dict)=>{
+                options.push({value: dict._id})
+            })
+            pubsub.publish('NEW_OPTIONS', {newVocabOptions: options})
+
+            return res
         }
     },
 
@@ -94,13 +118,24 @@ const Mutation = {
     },
     
     // 拿到ID，修改 if_publish 屬性。
-    async unpublishPost( parent, {post_id}, { db }, info){
+    async unpublishPost( parent, {post_id}, { db, pubsub }, info){
         try {
             const res = await db.PostModel.updateOne(
                 { _id : post_id },
                 { $set: {if_publish: false} }
             );
             if(res["nModified"] === 1){
+
+                const op = await db.PostModel.aggregate( [
+                    { $match: { if_publish: true }},
+                    { $group : { _id : "$vocabulary" } } 
+                ])
+                const options = []
+                op.map((dict)=>{
+                    options.push({value: dict._id})
+                })
+                pubsub.publish('NEW_OPTIONS', {newVocabOptions: options})
+
                 return {success:true, message:'成功隱藏'}
             }
             else{
@@ -111,13 +146,24 @@ const Mutation = {
         }
     },
 
-    async publishPost( parent, {post_id}, { db }, info){
+    async publishPost( parent, {post_id}, { db, pubsub }, info){
         try {
             const res = await db.PostModel.updateOne(
                 { _id : post_id },
                 { $set: {if_publish: true} }
             );
             if(res["nModified"] === 1){
+
+                const op = await db.PostModel.aggregate( [
+                    { $match: { if_publish: true }},
+                    { $group : { _id : "$vocabulary" } } 
+                ])
+                const options = []
+                op.map((dict)=>{
+                    options.push({value: dict._id})
+                })
+                pubsub.publish('NEW_OPTIONS', {newVocabOptions: options})
+
                 return {success:true, message:'成功發布'}
             }
             else{

@@ -77,6 +77,7 @@ const Query = {
 
     async getVocabOptions(parent, args, {db}, info){
         const res = await db.PostModel.aggregate( [
+            { $match: { if_publish: true }},
             { $group : { _id : "$vocabulary" } } 
         ])
         const to_return = []

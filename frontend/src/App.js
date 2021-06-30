@@ -3,9 +3,9 @@ import React, { useState, createContext, useEffect } from "react";
 import { NavLink, Switch, Route, BrowserRouter, Redirect, useHistory } from "react-router-dom";
 import { MUT_USER_LOGIN } from "./graphql";
 import { Button } from "@material-ui/core";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks";
 import { Space, Input, AutoComplete } from "antd";
-import { QUE_GET_VOCAB_OPTIONS } from "./graphql";
+import { QUE_GET_VOCAB_OPTIONS, SUB_NEW_VOCAB_OPTIONS } from "./graphql";
 
 import Add from "./Components/Add";
 import NotLogin from "./Components/NotLogin";
@@ -33,15 +33,25 @@ function App() {
   const [hideInput, setHideInput] = useState(false);
   const [allOptions, setAllOptions] = useState([])
   const [options, setOptions] = useState(allOptions)
-  const { loading, data, fetchMore } = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: 'network-only'});
+  const { loading, data} = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: 'network-only'});
 
   useEffect(()=>{
     if(data){
+      console.log("DATAAAAAAAAAAAA")
       setAllOptions(data.getVocabOptions);
       setOptions(data.getVocabOptions);
     }
   }
   , [data])
+
+  const sub = useSubscription(SUB_NEW_VOCAB_OPTIONS);
+  useEffect(()=>{
+    console.log("SUBBBBBBBBBBBB")
+    if(sub.data){
+      setAllOptions(sub.data.newVocabOptions);
+      setOptions(sub.data.newVocabOptions)
+    }
+  }, [sub.data])
 
   const onsearch = (value)=>{
     setSearchWord(value);
