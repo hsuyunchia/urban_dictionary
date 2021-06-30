@@ -226,9 +226,10 @@
 .add-close .botton{
   margin-top: 1.2rem;
   margin-right: 3rem;
+  margin-bottom: 1.3rem;
   color:aliceblue;
   background-color: #534b48;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
 }
 

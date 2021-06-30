@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { NavLink, Switch, Route, BrowserRouter, Redirect, useHistory } from "react-router-dom";
 import { MUT_USER_LOGIN } from "./graphql";
 import { Button } from "@material-ui/core";
@@ -33,7 +33,7 @@ function App() {
   const [hideInput, setHideInput] = useState(false);
   const [allOptions, setAllOptions] = useState([])
   const [options, setOptions] = useState(allOptions)
-  const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS);
+  const { loading, data, fetchMore } = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: 'network-only'});
 
   useEffect(()=>{
     if(data){
