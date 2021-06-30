@@ -18,7 +18,10 @@ const Modify = () => {
 	const [explanation, setExplanation] = useState("");
 	const [example, setExample] = useState("");
 	let history = useHistory();
-	useEffect(()=>{userInfo.setHideInput(true);})
+	useEffect(() => {
+		userInfo.setHideInput(false);
+		userInfo.setSearchWord("");
+	}, []);
 
     useEffect(() => {
         if(data){
@@ -95,11 +98,11 @@ const Modify = () => {
 				來修改你的詞語吧！ 
 			</div>
 			<div className="add-form">
-				<div className="title">你ㄉ詞語 (必填)</div>
+				<div className="title">你ㄉ詞語</div>
 				<Input placeholder="不可以空白！" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value.trim());}}></Input>
-				<div className="title">它ㄉ解釋 (必填)</div>
+				<div className="title">它ㄉ解釋</div>
 				<Input.TextArea placeholder="不可以空白！" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value.trim());}}></Input.TextArea>
-				<div className="title">一ㄍ例句 (必填)</div>
+				<div className="title">一ㄍ例句</div>
 				<Input.TextArea placeholder="不可以空白！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value.trim());}}></Input.TextArea>
 				{/* <div className="title">為它新增一些標籤吧~</div>
 				<Input.TextArea placeholder="為它新增一些標籤吧！" rows={2} className="input"></Input.TextArea> */}

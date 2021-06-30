@@ -110,7 +110,7 @@ function App() {
 
   return (
 		<BrowserRouter>
-      <UserInfo.Provider value={{name: userName, email: userEmail, penName:userpenName, setPenName:setuserpenName, setHideInput}}>
+      <UserInfo.Provider value={{name: userName, email: userEmail, penName:userpenName, setPenName:setuserpenName, setHideInput, setSearchWord}}>
         <div className="background">
           <div className="header">
             <div className="row-title">
@@ -140,9 +140,15 @@ function App() {
                     value={searchWord}
                     options={options}
                     ref={autocomplete}
+                    backfill
                     onFocus={() => {
-                      console.log("onFocus", autocomplete.current.value);
-
+                      // console.log("onFocus", autocomplete.current.value);
+                      if(searchWord.length===0){
+                        setOptions(allOptions);
+                      }
+                      else{
+                        onsearch(searchWord);
+                      }
                     }}
                     onSearch={onsearch}
                     onSelect={(term) => {
@@ -150,8 +156,8 @@ function App() {
                       //   Message({status: "warning", msg: "請輸入搜尋內容！"});
                       //   return;
                       // }
-                      // const path = "/define/" + term;
-                      // history.push(path);
+                      const path = "/define/" + term;
+                      history.push(path);
 
                       setSearchWord(term);
                       setOptions(allOptions);
@@ -172,6 +178,7 @@ function App() {
                         history.push(path);
                         setSearchWord(term);
                         console.log("inputField", inputField.current);
+                        // setTimeout(autocomplete.current.blur(), 10);
                         // inputField.current.blur();
                         // autocomplete.current.blur();
                       }}

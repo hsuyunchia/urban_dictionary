@@ -8,7 +8,10 @@ import { UserInfo } from "../App";
 const NotLogin = () => {
 	const userInfo = useContext(UserInfo);
 	const check = useLocation();
-	useEffect(()=>{userInfo.setHideInput(true);})
+	useEffect(() => {
+		userInfo.setHideInput(true);
+		userInfo.setSearchWord("");
+	}, []);
 
 	return(
 		userInfo.email
