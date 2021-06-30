@@ -12,9 +12,12 @@ const Cards = ({data}) => {
 	let list = [];
 	let num = data.length;
 	const cmp = (a, b) => {
-		let numa = a.props.agree_users.length - a.props.disagree_users.length;
-		let numb = b.props.agree_users.length - b.props.disagree_users.length;
-		return numb - numa;
+		const numa = a.props.agree_users.length - a.props.disagree_users.length;
+		const numb = b.props.agree_users.length - b.props.disagree_users.length;
+		if(numa !== numb)
+			return numb - numa;
+		else
+			return b.props.agree_users.length - a.props.agree_users.length;
 	}
 	for(let i = 0; i < num; i++){
 		// console.log(i,data[i].if_publish);
