@@ -33,7 +33,9 @@ function App() {
   const [hideInput, setHideInput] = useState(false);
   const [allOptions, setAllOptions] = useState([])
   const [options, setOptions] = useState(allOptions)
-  const { loading, data} = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: 'network-only'});
+  const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: "network-only"});
+  const inputField = React.useRef(null);
+  const autocomplete = React.useRef(null);
 
   useEffect(()=>{
     if(data){
@@ -42,7 +44,7 @@ function App() {
       setOptions(data.getVocabOptions);
     }
   }
-  , [data])
+  , [data]);
 
   const sub = useSubscription(SUB_NEW_VOCAB_OPTIONS);
   useEffect(()=>{
@@ -57,8 +59,14 @@ function App() {
     setSearchWord(value);
     const op = allOptions.filter((obj)=>{
       return obj.value.includes(value)
-    })
-    console.log("options", op)
+    });
+    op.sort();
+    const ataru = op.indexOf(value);
+    console.log("ataru", ataru);
+    if(ataru !== -1){
+      [op[0], op[ataru]]=[op[ataru], op[0]];
+    }
+    console.log("options", op);
     setOptions(op);
   }
 
@@ -117,33 +125,41 @@ function App() {
                     className="search-bar"
                     value={searchWord}
                     options={options}
+                    ref={autocomplete}
+                    onFocus={() => {
+                      console.log("onFocus", autocomplete.current.value);
+
+                    }}
                     onSearch={onsearch}
                     onSelect={(term) => {
-                      if(term.length===0){
-                        Message({status: "warning", msg: "請輸入搜尋內容！"});
-                        return;
-                      }
+                      // if(term.length===0){
+                      //   Message({status: "warning", msg: "請輸入搜尋內容！"});
+                      //   return;
+                      // }
+                      // const path = "/define/" + term;
+                      // history.push(path);
+
                       setSearchWord(term);
                       setOptions(allOptions);
+                      console.log("autocomplete", autocomplete);
                     }}
                   >
-                    <Input.Search size="large" placeholder="嗨？ 想找甚麼ㄋ？" className="search-bar"
+                    <Input.Search size="large"
+                      placeholder="嗨？ 想找甚麼ㄋ？"
+                      className="search-bar"
+                      ref={inputField}
                       onSearch={(term) => {
                         if(term.length===0){
                           Message({status: "warning", msg: "請輸入搜尋內容！"});
                           return;
                         }
+                        setOptions([]);
                         const path = "/define/" + term;
-                        history.push({
-                          pathname: path,
-                          state: {
-                            pen: userpenName,
-                            name: userName,
-                            email: userEmail,
-                          },
-                        });
-                        setSearchWord("");
-                        setOptions(allOptions);
+                        history.push(path);
+                        setSearchWord(term);
+                        console.log("inputField", inputField.current);
+                        // inputField.current.blur();
+                        // autocomplete.current.blur();
                       }}
                     enterButton />
                   </AutoComplete>
