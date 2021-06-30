@@ -107,7 +107,7 @@ const Modify = () => {
 				{/* <div className="title">為它新增一些標籤吧~</div>
 				<Input.TextArea placeholder="為它新增一些標籤吧！" rows={2} className="input"></Input.TextArea> */}
 				<div className="footer">
-					<Button variant="contained" color="primary" className="botton" onClick={handleCreate}>我填完了！</Button>
+					<Button variant="contained" color="primary" className="botton" onClick={handleCreate}>就是改成這樣！</Button>
 				</div>
 			</div>
 			<div className="add-close"></div>

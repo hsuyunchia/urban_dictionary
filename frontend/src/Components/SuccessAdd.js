@@ -16,7 +16,7 @@ const SuccessAdd = ()=>{
 		)
 	}
 	
-	console.log("[SuccessAdd]", userInfo)
+	//console.log("[SuccessAdd]", userInfo)
 	return(
 		<div className="add">
 			<div className="add-close">

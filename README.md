@@ -34,9 +34,35 @@
 ###### 使用與參考之框架/模組/原始碼
 
 ###### 使用之第三方套件、框架、程式碼
+Frontend:
+"@apollo/client": "^3.3.20",
+    "@apollo/react-hooks": "^4.0.0",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.1.9",
+    "antd": "^4.16.5",
+    "apollo-link-ws": "^1.0.20",
+    "dotenv-defaults": "^2.0.2",
+    "graphql": "^15.5.1",
+    "material-ui": "^0.20.2",
+    "mongoose": "^5.12.15",
+    "papaparse": "^5.3.1",
+    "react": "^17.0.2",
+    "react-apollo": "^3.1.5",
+    "react-dom": "^17.0.2",
+    "react-google-login": "^5.2.2",(usage refrence::https://zoejoyuliao.medium.com/add-google-sign-in-and-sign-out-to-your-react-app-and-get-the-accesstoken-2ee16bfd8297)
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "subscriptions-transport-ws": "^0.9.19",
+    "web-vitals": "^2.0.1"
 
 ###### 專題製作心得
 
 ###### 各組員之負責項目 (請詳述)
+許芸嘉：後端API、新增頁面、按讚功能、css設計、保留登入狀態功能
+江宗翰：google登入功能、使用者頁面、修改頁面及功能、隱藏發布功能、部屬
+江浩瑋：主頁面、LOGO設計、作者/字詞檢索功能、再來一個字詞帶入功能、詞卡顯示畫面
 
 ###### (Optional) 對於此課程的建議
