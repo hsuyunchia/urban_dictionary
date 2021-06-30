@@ -62,7 +62,7 @@ function App() {
   }, [sub.data]);
 
   const cmp = (a, b) => {
-    return a.value - b.value;
+    return a.value.localeCompare(b.value);
   }
 
   const onsearch = (value)=>{
@@ -163,11 +163,13 @@ function App() {
                     onFocus={() => {
                       // console.log("onFocus", autocomplete.current.value);
                       if(searchWord.length===0){
-                        setOptions(allOptions);
+                        onsearch("");
+                        // setOptions(allOptions);
                       }
                       else{
                         onsearch(searchWord);
                       }
+
                       console.log("onfocus");
                     }}
                     onSearch={onsearch}
