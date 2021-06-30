@@ -23,23 +23,29 @@ import Message from "./Hooks/Message";
 export const UserInfo = createContext();
 
 function App() {
-  const [startLogin] = useMutation(MUT_USER_LOGIN);
-  const [userName, setuserName]=useState(undefined);
-  const [userEmail, setuserEmail]=useState(undefined);
-  const [imageUrl,setImageUrl]=useState("");
-  const [userpenName, setuserpenName]=useState(undefined);
+  const l = localStorage.getItem("login");
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
+  const image = localStorage.getItem("image");
+  const pen = localStorage.getItem("pen");
+
+  const [userName, setuserName]=useState(name || undefined);
+  const [userEmail, setuserEmail]=useState(email || undefined);
+  const [imageUrl,setImageUrl]=useState(image || "");
+  const [userpenName, setuserpenName]=useState(pen || undefined);
+  const [isLogin, setisLogin]=useState(l || false);
   const [searchWord, setSearchWord]=useState("");
-	const [isLogin, setisLogin]=useState(false);
   const [hideInput, setHideInput] = useState(false);
   const [allOptions, setAllOptions] = useState([])
   const [options, setOptions] = useState(allOptions)
+
+  const [startLogin] = useMutation(MUT_USER_LOGIN);
   const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: "network-only"});
   const inputField = React.useRef(null);
   const autocomplete = React.useRef(null);
 
   useEffect(()=>{
     if(data){
-      console.log("DATAAAAAAAAAAAA")
       setAllOptions(data.getVocabOptions);
       setOptions(data.getVocabOptions);
     }
@@ -48,7 +54,6 @@ function App() {
 
   const sub = useSubscription(SUB_NEW_VOCAB_OPTIONS);
   useEffect(()=>{
-    console.log("SUBBBBBBBBBBBB")
     if(sub.data){
       setAllOptions(sub.data.newVocabOptions);
       setOptions(sub.data.newVocabOptions)
@@ -78,13 +83,22 @@ function App() {
 		setisLogin(true);
     const res = await startLogin({variables: {name: profile.getName(), email: profile.getEmail()}});
     setuserpenName(res.data.userLogin.penName);
+
+    localStorage.setItem("login", true);
+    localStorage.setItem("name", profile.getName());
+    localStorage.setItem("email", profile.getEmail());
+    localStorage.setItem("image", profile.getImageUrl());
+    localStorage.setItem("pen", res.data.userLogin.penName);
   }
 
 	const logout = () => {
-		setuserName("");
-    setuserEmail("");
+		setuserName(undefined);
+    setuserEmail(undefined);
 		setisLogin(false);
     setuserpenName(undefined);
+    setImageUrl("");
+    localStorage.clear();
+
     Message({status: "success", msg: "登出成功！"});
     <Redirect exact={true} from="/user" to="/home" />
 	}
