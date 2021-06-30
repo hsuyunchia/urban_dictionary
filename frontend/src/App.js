@@ -70,7 +70,8 @@ function App() {
     const op = allOptions.filter((obj)=>{
       return obj.value.includes(value)
     });
-    op.sort(cmp);
+    if(op.length > 0)
+      op.sort(cmp);
     let ataru = 0;
     for(let i = 0; i < op.length; i++){
       if(op[i].value === value){
@@ -86,10 +87,10 @@ function App() {
           opp.push(op[i]);
         }
       }
-      console.log("op", op[0].value - op[1].value);
-      console.log("tt", typeof(op[0].value));
+      //console.log("op", op[0].value - op[1].value);
+      //console.log("tt", typeof(op[0].value));
     }
-    console.log("onsearch");
+    //console.log("onsearch");
     setOptions(opp);
   }
 
@@ -170,7 +171,7 @@ function App() {
                         onsearch(searchWord);
                       }
 
-                      console.log("onfocus");
+                      //console.log("onfocus");
                     }}
                     onSearch={onsearch}
                     onSelect={(term) => {
