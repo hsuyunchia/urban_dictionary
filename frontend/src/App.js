@@ -126,6 +126,7 @@ function App() {
                     value={searchWord}
                     options={options}
                     ref={autocomplete}
+                    backfill
                     onFocus={() => {
                       // console.log("onFocus", autocomplete.current.value);
                       if(searchWord.length===0){
