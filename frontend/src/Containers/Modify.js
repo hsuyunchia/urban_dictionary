@@ -18,7 +18,7 @@ const Modify = () => {
 	const [explanation, setExplanation] = useState("");
 	const [example, setExample] = useState("");
 	let history = useHistory();
-	useEffect(()=>{userInfo.setHideInput(true);},[])
+	useEffect(()=>{userInfo.setHideInput(true);})
 
     useEffect(() => {
         if(data){

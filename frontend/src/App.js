@@ -83,7 +83,7 @@ function App() {
           <div className="header">
             <div className="row-title">
               <button className="homeBtn">
-                <NavLink className="homeBtn" to={{pathname: "/home", state: {email: (isLogin ? userEmail : null)}}}><img id="icon" src={icon} /></NavLink>
+                <NavLink className="homeBtn" to={{pathname: "/home", state: {email: (isLogin ? userEmail : null)}}}><img id="icon" alt='首頁icon按鈕' src={icon} /></NavLink>
               </button>
               <div className="row-title-bottons">
                 <Space size={18}>

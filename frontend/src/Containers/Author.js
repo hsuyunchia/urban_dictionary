@@ -10,7 +10,7 @@ const Author = () => {
 	const { penname : penName } = useParams();
 	const userInfo = useContext(UserInfo);
 	const { loading, error, data } = useQuery(QUE_QUERY_BY_USER, {variables: {penName: penName}, fetchPolicy: "cache-and-network"});
-	useEffect(()=>{userInfo.setHideInput(false);},[])
+	useEffect(()=>{userInfo.setHideInput(false);})
 	
 	// console.log("data", data);
 	// console.log("error", error);

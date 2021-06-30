@@ -11,12 +11,9 @@ const Define = () => {
 	const { term } = useParams();
 	const userInfo = useContext(UserInfo);
 	const { loading, error, data } = useQuery(QUE_QUERY_BY_VOCABULARY, {variables: {vocabulary: term}, fetchPolicy: "network-only"});
-	useEffect(()=>{userInfo.setHideInput(false);},[])
+	useEffect(()=>{userInfo.setHideInput(false);})
 	useEffect(() => {
 		if(data) setList(data.queryByVocabulary);
-		return(() => {
-			console.log("home unmouted");
-		});
 	}, [data]);
 	// console.log("data", data);
 	// console.log("error", error);

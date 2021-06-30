@@ -18,7 +18,7 @@ const Add = () => {
 	const check = useLocation();
 	// console.log("check", check);
 	const userInfo = useContext(UserInfo);
-	useEffect(()=>{userInfo.setHideInput(true);},[])
+	useEffect(()=>{userInfo.setHideInput(true);})
 	//console.log("[User] UserInfo", userInfo);
 	if(!userInfo.email){
 		return(

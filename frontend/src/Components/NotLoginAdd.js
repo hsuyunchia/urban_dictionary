@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { NavLink, Redirect, useLocation } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import CallMadeIcon from "@material-ui/icons/CallMade";
@@ -7,9 +7,9 @@ import { UserInfo } from "../App";
 
 const NotLogin = () => {
 	const userInfo = useContext(UserInfo);
-	userInfo.setHideInput(true);
 	const check = useLocation();
-	// console.log("check", check);
+	useEffect(()=>{userInfo.setHideInput(true);})
+
 	return(
 		userInfo.email
 		? <Redirect exact={true} from="/add/notLogin" to={{pathname: "/add", state: {wordToBeDefine: check.state.wordToBeDefine}}} />

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import CallMadeIcon from "@material-ui/icons/CallMade";
@@ -7,7 +7,7 @@ import { UserInfo } from "../App";
 
 const NotLogin = () => {
 	const userInfo = useContext(UserInfo);
-	userInfo.setHideInput(true);
+	useEffect(()=>{userInfo.setHideInput(true);})
 
 	return(
 		userInfo.email
