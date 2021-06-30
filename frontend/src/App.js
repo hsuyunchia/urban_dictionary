@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { NavLink, Switch, Route, BrowserRouter, Redirect, useHistory } from "react-router-dom";
 import { MUT_USER_LOGIN } from "./graphql";
 import { Button } from "@material-ui/core";
@@ -33,9 +33,10 @@ function App() {
   const [hideInput, setHideInput] = useState(false);
   const [allOptions, setAllOptions] = useState([])
   const [options, setOptions] = useState(allOptions)
-  const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS);
+  const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: "network-only"});
   const inputField = React.useRef(null);
   const autocomplete = React.useRef(null);
+
   useEffect(()=>{
     if(data){
       setAllOptions(data.getVocabOptions);
@@ -107,7 +108,7 @@ function App() {
               </div>
             </div>
             {hideInput
-              ? <></>
+              ? null
               : <div className="row-bar">
                 <Route render={({history}) => (
                   <AutoComplete
@@ -127,6 +128,7 @@ function App() {
                       // }
                       // const path = "/define/" + term;
                       // history.push(path);
+
                       setSearchWord(term);
                       setOptions(allOptions);
                       console.log("autocomplete", autocomplete);
@@ -151,33 +153,6 @@ function App() {
                       }}
                     enterButton />
                   </AutoComplete>
-
-                  // <Input.Search
-                  //   className="search-bar"
-                  //   placeholder="嗨？ 想找甚麼ㄋ？"
-                  //   enterButton="搜尋"
-                  //   size="large"
-                  //   value={searchWord}
-                  //   onChange={(e) => {
-                  //     setSearchWord(e.target.value);
-                  //   }}
-                  //   onSearch={(term) => {
-                  //     if(term.length===0){
-                  //       Message({status: "warning", msg: "請輸入搜尋內容！"});
-                  //       return;
-                  //     }
-                  //     const path = "/define/" + term;
-                  //     history.push({
-                  //       pathname: path,
-                  //       state: {
-                  //         pen: userpenName,
-                  //         name: userName,
-                  //         email: userEmail,
-                  //       },
-                  //     });
-                  //     setSearchWord("");
-                  //   }}
-                  // ></Input.Search>
                 )} />
               </div>
             }
