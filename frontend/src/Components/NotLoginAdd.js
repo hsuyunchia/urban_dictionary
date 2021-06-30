@@ -9,7 +9,7 @@ const NotLogin = () => {
 	const userInfo = useContext(UserInfo);
 	userInfo.setHideInput(true);
 	const check = useLocation();
-	console.log("check", check);
+	// console.log("check", check);
 	return(
 		userInfo.email
 		? <Redirect exact={true} from="/add/notLogin" to={{pathname: "/add", state: {wordToBeDefine: check.state.wordToBeDefine}}} />

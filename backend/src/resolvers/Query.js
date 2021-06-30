@@ -74,6 +74,18 @@ const Query = {
     async queryById(parent,{id},{db},info){
         return await db.PostModel.findOne({_id: id});
     },
+
+    async getVocabOptions(parent, args, {db}, info){
+        const res = await db.PostModel.aggregate( [
+            { $group : { _id : "$vocabulary" } } 
+        ])
+        const to_return = []
+        res.map((dict)=>{
+            to_return.push({value: dict._id})
+        })
+
+        return to_return
+    }
 };
 
 export default Query;

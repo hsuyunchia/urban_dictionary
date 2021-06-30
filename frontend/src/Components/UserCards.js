@@ -9,9 +9,9 @@ const UserCards = () => {
 	const userInfo = useContext(UserInfo);
 	const { loading, error, data } = useQuery(QUE_QUERY_MY_POST, {variables: {email: userInfo.email}, fetchPolicy: "network-only"});
 
-	console.log("data", data);
-	console.log("error", error);
-	console.log("loading", loading);
+	// console.log("data", data);
+	// console.log("error", error);
+	// console.log("loading", loading);
 	if( loading || !data ){
 		return(
 			<div className="title">

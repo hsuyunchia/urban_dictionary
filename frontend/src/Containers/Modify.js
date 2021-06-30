@@ -22,22 +22,22 @@ const Modify = () => {
 
     useEffect(() => {
         if(data){
-            console.log("effect");
+            // console.log("effect");
             setVocab(data.queryById.vocabulary);
             setExplanation(data.queryById.explanation);
             setExample(data.queryById.example);
         }
     }, [data]);
-    console.log("data in mod", data);
-	console.log("error in mod", error);
-	console.log("loading", loading);
+    // console.log("data in mod", data);
+	// console.log("error in mod", error);
+	// console.log("loading", loading);
 	if((!loading && data && data.queryById.author.email !== userInfo.email)){
         console.log("case A");
         return <Redirect to="/home" />;
     }
 	
     if(!userInfo.penName){
-        console.log("case C");
+        // console.log("case C");
         return <Redirect to="/home" />;
     }	
 	

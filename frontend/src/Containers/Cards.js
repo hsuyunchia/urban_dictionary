@@ -17,7 +17,7 @@ const Cards = ({data}) => {
 		return numb - numa;
 	}
 	for(let i = 0; i < num; i++){
-		console.log(i,data[i].if_publish);
+		// console.log(i,data[i].if_publish);
 		list.push(
 			<Card 
 				vocabulary={data[i].vocabulary}
@@ -34,7 +34,7 @@ const Cards = ({data}) => {
 			/>
 		);
 	}
-	console.log(list);
+	// console.log(list);
 	list.sort(cmp);
 	return (
 		<div>

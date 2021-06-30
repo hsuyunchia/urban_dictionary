@@ -6,23 +6,17 @@
 
 ###### 此服務內容
 
-
-
 ###### Demo 影片連結
 
 .....
 
 ###### Deployed 連結
 
-........
+後端：http://dictionaryserver.ddns.net/
 
 ###### Client 端使用 / 操作方式
 
-
-
 ###### Server 端使用 / 操作方式
-
-
 
 **local 安裝、執行步驟：**
 
@@ -33,8 +27,6 @@
 5. 開另一個 command line，`yarn start` 跑前端程式。
 
 ###### local 測試步驟：
-
-
 
 ###### 其他說明
 

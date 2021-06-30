@@ -15,13 +15,10 @@ const Home = () => {
 	useEffect(()=>{userInfo.setHideInput(false);},[])
 	useEffect(() => {
 		if(data) setList(data.randomFivePosts);
-		return(() => {
-			console.log("home unmouted");
-		});
 	}, [data]);
-	console.log("data", data);
-	console.log("error", error);
-	console.log("loading", loading);
+	// console.log("data", data);
+	// console.log("error", error);
+	// console.log("loading", loading);
 	if(!data){
 		return(
 			<div id="content">
