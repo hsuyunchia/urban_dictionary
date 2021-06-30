@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, createContext, useEffect } from "react";
-import { NavLink, Switch, Route, BrowserRouter, Redirect, useHistory } from "react-router-dom";
+import { NavLink, Switch, Route, HashRouter, Redirect, useHistory } from "react-router-dom";
 import { MUT_USER_LOGIN } from "./graphql";
 import { Button } from "@material-ui/core";
 import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks";
@@ -119,7 +119,8 @@ function App() {
 	}
 
   return (
-		<BrowserRouter>
+		<HashRouter>
+    {/* <BrowserRouter> */}
       <UserInfo.Provider value={{name: userName, email: userEmail, penName:userpenName, setPenName:setuserpenName, setHideInput, setSearchWord}}>
         <div className="background">
           <div className="header">
@@ -171,7 +172,7 @@ function App() {
 
                       setSearchWord(term);
                       setOptions(allOptions);
-                      console.log("autocomplete", autocomplete);
+                      //console.log("autocomplete", autocomplete);
                     }}
                   >
                     <Input.Search size="large"
@@ -187,7 +188,7 @@ function App() {
                         const path = "/define/" + term;
                         history.push(path);
                         setSearchWord(term);
-                        console.log("inputField", inputField.current);
+                        //console.log("inputField", inputField.current);
                         // setTimeout(autocomplete.current.blur(), 10);
                         // inputField.current.blur();
                         // autocomplete.current.blur();
@@ -216,8 +217,9 @@ function App() {
           <div className="footer" />
         </div>
       </UserInfo.Provider>
-		</BrowserRouter>     
-	);
+		{/* </BrowserRouter>      */}
+    </HashRouter>
+  );
 }
 
 export default App;
