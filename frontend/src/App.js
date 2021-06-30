@@ -61,13 +61,23 @@ function App() {
       return obj.value.includes(value)
     });
     op.sort();
-    const ataru = op.indexOf(value);
-    console.log("ataru", ataru);
-    if(ataru !== -1){
-      [op[0], op[ataru]]=[op[ataru], op[0]];
+    let ataru = 0;
+    for(let i = 0; i < op.length; i++){
+      if(op[i].value === value){
+        ataru = i;
+        break;
+      }
     }
-    console.log("options", op);
-    setOptions(op);
+    let opp = [];
+    if(op.length !== 0){
+      opp.push(op[ataru]);
+      for(let i = 0; i < op.length; i++){
+        if(i !== ataru){
+          opp.push(op[i]);
+        }
+      }
+    }
+    setOptions(opp);
   }
 
 	const login = async (googleUser) => {
