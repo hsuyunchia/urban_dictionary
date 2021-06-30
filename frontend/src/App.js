@@ -19,6 +19,7 @@ import Modify from './Containers/Modify';
 import GoogleBtn from "./Components/GoogleBtn";
 import icon from "./imgs/icon.png";
 import Message from "./Hooks/Message";
+import { isNullableType } from "graphql";
 
 export const UserInfo = createContext();
 
@@ -27,7 +28,7 @@ function App() {
   const name = localStorage.getItem("name");
   const email = localStorage.getItem("email");
   const image = localStorage.getItem("image");
-  const pen = localStorage.getItem("pen");
+  const pen = JSON.parse(localStorage.getItem("pen"));
 
   const [userName, setuserName]=useState(name || undefined);
   const [userEmail, setuserEmail]=useState(email || undefined);
@@ -98,7 +99,7 @@ function App() {
     localStorage.setItem("name", profile.getName());
     localStorage.setItem("email", profile.getEmail());
     localStorage.setItem("image", profile.getImageUrl());
-    localStorage.setItem("pen", res.data.userLogin.penName);
+    localStorage.setItem("pen", JSON.stringify(res.data.userLogin.penName));
   }
 
 	const logout = () => {
