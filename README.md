@@ -4,22 +4,22 @@
 
 成員：B07902012 江宗翰、B07705004 許芸嘉、B07902019 江浩瑋
 
-###### 此服務內容
+##### 此服務內容
 
-###### Demo 影片連結
+##### Demo 影片連結
 
 .....
 
-###### Deployed 連結
+##### Deployed 連結
 
 前端：https://citydictionary.ddns.net/
 後端：暫不提供
 
-###### Client 端使用 / 操作方式
+##### Client 端使用 / 操作方式
 
-###### Server 端使用 / 操作方式
+##### Server 端使用 / 操作方式
 
-**local 安裝、執行步驟：**
+##### **local 安裝、執行步驟：**
 
 1. `cd frontend` 至前端資料夾，`yarn` 安裝套件。
 2. `cd backend` 至後端資料夾，`yarn` 安裝套件。
@@ -27,40 +27,42 @@
 4. 回到外層資料夾(根目錄)，`yarn server` 跑後端程式碼，印出 "Mongo database connected!" 訊息，表示成功。
 5. 開另一個 command line，`yarn start` 跑前端程式。
 
-###### local 測試步驟：
+##### local 測試步驟：
 
-###### 其他說明
+##### 其他說明
 
 ###### 使用與參考之框架/模組/原始碼
 
 ###### 使用之第三方套件、框架、程式碼
-Frontend:
+
+**Frontend**
 "@apollo/client": "^3.3.20",
-    "@apollo/react-hooks": "^4.0.0",
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.1.9",
-    "antd": "^4.16.5",
-    "apollo-link-ws": "^1.0.20",
-    "dotenv-defaults": "^2.0.2",
-    "graphql": "^15.5.1",
-    "material-ui": "^0.20.2",
-    "mongoose": "^5.12.15",
-    "papaparse": "^5.3.1",
-    "react": "^17.0.2",
-    "react-apollo": "^3.1.5",
-    "react-dom": "^17.0.2",
-    "react-google-login": "^5.2.2",(usage refrence::https://zoejoyuliao.medium.com/add-google-sign-in-and-sign-out-to-your-react-app-and-get-the-accesstoken-2ee16bfd8297)
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
-    "subscriptions-transport-ws": "^0.9.19",
-    "web-vitals": "^2.0.1"
+"@apollo/react-hooks": "^4.0.0",
+"@material-ui/core": "^4.11.4",
+"@material-ui/icons": "^4.11.2",
+"@testing-library/jest-dom": "^5.14.1",
+"@testing-library/react": "^12.0.0",
+"@testing-library/user-event": "^13.1.9",
+"antd": "^4.16.5",
+"apollo-link-ws": "^1.0.20",
+"dotenv-defaults": "^2.0.2",
+"graphql": "^15.5.1",
+"material-ui": "^0.20.2",
+"mongoose": "^5.12.15",
+"papaparse": "^5.3.1",
+"react": "^17.0.2",
+"react-apollo": "^3.1.5",
+"react-dom": "^17.0.2",
+"react-google-login": "^5.2.2",(usage refrence::https://zoejoyuliao.medium.com/add-google-sign-in-and-sign-out-to-your-react-app-and-get-the-accesstoken-2ee16bfd8297)
+"react-router-dom": "^5.2.0",
+"react-scripts": "^4.0.3",
+"subscriptions-transport-ws": "^0.9.19",
+"web-vitals": "^2.0.1"
 
 ###### 專題製作心得
 
 ###### 各組員之負責項目 (請詳述)
+
 許芸嘉：後端API、新增頁面、按讚功能、css設計、保留登入狀態功能
 江宗翰：google登入功能、使用者頁面、修改頁面及功能、隱藏發布功能、部屬
 江浩瑋：主頁面、LOGO設計、作者/字詞檢索功能、再來一個字詞帶入功能、詞卡顯示畫面
