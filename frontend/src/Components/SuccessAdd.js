@@ -5,7 +5,9 @@ import { useContext } from 'react';
 
 const SuccessAdd = ()=>{
 	const userInfo = useContext(UserInfo);
+
 	userInfo.setHideInput(true);
+	// userInfo.setSearchWord("");
 
 	if(!userInfo.email){
 		return(

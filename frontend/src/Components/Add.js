@@ -17,7 +17,10 @@ const Add = () => {
 	let history = useHistory();
 	const check = useLocation();
 	const userInfo = useContext(UserInfo);
-	useEffect(()=>{userInfo.setHideInput(true);})
+	useEffect(() => {
+		userInfo.setHideInput(true);
+		// userInfo.setSearchWord("");
+	});
 	//console.log("[User] UserInfo", userInfo);
 	if(!userInfo.email){
 		return(

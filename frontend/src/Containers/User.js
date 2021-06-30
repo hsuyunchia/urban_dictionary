@@ -20,7 +20,10 @@ function User ({afunction}){
 	// const [Pen, setPen]=useState(userInfo.pen);
 	const [changePenName, setChanegPenName] = useState(false);
 
-	useEffect(()=>{userInfo.setHideInput(true);})
+	useEffect(() => {
+		userInfo.setHideInput(false);
+		// userInfo.setSearchWord("");
+	});
 	
 	if(!userInfo.email){
 		return(

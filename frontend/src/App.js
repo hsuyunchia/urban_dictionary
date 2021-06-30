@@ -136,8 +136,8 @@ function App() {
                       //   Message({status: "warning", msg: "請輸入搜尋內容！"});
                       //   return;
                       // }
-                      // const path = "/define/" + term;
-                      // history.push(path);
+                      const path = "/define/" + term;
+                      history.push(path);
 
                       setSearchWord(term);
                       setOptions(allOptions);
@@ -158,6 +158,7 @@ function App() {
                         history.push(path);
                         setSearchWord(term);
                         console.log("inputField", inputField.current);
+                        // setTimeout(autocomplete.current.blur(), 10);
                         // inputField.current.blur();
                         // autocomplete.current.blur();
                       }}
