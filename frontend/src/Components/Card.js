@@ -102,7 +102,7 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 		// const linke = link.replace(",,,", "'>");
 		// const linked = linke.replace("]]]", "</NavLink>");
 		const splited = sentence.split("[[[");
-		console.log(splited);
+		//console.log(splited);
 		// console.log(sentence[-1]);
 		// let linked = [];
 		// for (let str )
@@ -114,7 +114,7 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 				const content = str.slice(0, -3);
 				const ret = React.createElement(
 					NavLink,
-					{to: "/define/" + content},
+					{key: str+'nav_Link', to: "/define/" + content},
 					content
 				);
 				return [ret];
@@ -123,12 +123,12 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 				const sspp = str.split("]]]");
 				const ret0 = React.createElement(
 					NavLink,
-					{to: "/define/" + sspp[0]},
+					{key: str+'navLink', to: "/define/" + sspp[0]},
 					sspp[0]
 				);
 				const ret1 = React.createElement(
 					"span",
-					{},
+					{key:str+'_ret1'},
 					sspp[1]
 				);
 				return [ret0, ret1];
@@ -136,13 +136,13 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 			else{
 				const ret = React.createElement(
 					"span",
-					{},
+					{key:str+'_ret'},
 					str
 				);
 				return [ret];
 			}
 		});
-		console.log(linked);
+		//console.log(linked);
 		// const linked = [<NavLink to='/define/QQ'>QQ</NavLink>, <span>wertyu</span>];
 		return linked;
 	}

@@ -35,8 +35,8 @@ const Add = () => {
 			);
 		}
 	}
-	console.log(userInfo.penName);
-	console.log(typeof(userInfo.penName));
+	//console.log(userInfo.penName);
+	//console.log(typeof(userInfo.penName));
 	if(!userInfo.penName){
 		return(
 			<div className="add">
