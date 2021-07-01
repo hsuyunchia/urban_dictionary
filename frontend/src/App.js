@@ -5,6 +5,7 @@ import { MUT_USER_LOGIN } from "./graphql";
 import { Button } from "@material-ui/core";
 import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks";
 import { Space, Input, AutoComplete } from "antd";
+import { CaretUpOutlined } from "@ant-design/icons";
 import { QUE_GET_VOCAB_OPTIONS, SUB_NEW_VOCAB_OPTIONS } from "./graphql";
 
 import Add from "./Components/Add";
@@ -39,6 +40,7 @@ function App() {
   const [hideInput, setHideInput] = useState(false);
   const [allOptions, setAllOptions] = useState([])
   const [options, setOptions] = useState(allOptions)
+  const [scrollBtnVis, setScrollBtnVis] = useState(false);
 
   const [startLogin] = useMutation(MUT_USER_LOGIN);
   const { loading, error, data } = useQuery(QUE_GET_VOCAB_OPTIONS, {fetchPolicy: "network-only"});
@@ -87,10 +89,8 @@ function App() {
           opp.push(op[i]);
         }
       }
-      //console.log("op", op[0].value - op[1].value);
-      //console.log("tt", typeof(op[0].value));
     }
-    //console.log("onsearch");
+    console.log("onsearch", value);
     setOptions(opp);
   }
 
@@ -127,6 +127,18 @@ function App() {
     setuserpenName(res.data.userLogin.penName);
 	}
 
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300){
+      setScrollBtnVis(true);
+    } 
+    else if (scrolled <= 300){
+      setScrollBtnVis(false);
+    }
+  };
+
+   window.addEventListener("scroll", toggleVisible);
+
   return (
 		<HashRouter>
     {/* <BrowserRouter> */}
@@ -162,33 +174,24 @@ function App() {
                     ref={autocomplete}
                     backfill
                     onFocus={() => {
-                      // console.log("onFocus", autocomplete.current.value);
                       if(searchWord.length===0){
                         onsearch("");
-                        // setOptions(allOptions);
                       }
                       else{
                         onsearch(searchWord);
                       }
-
-                      //console.log("onfocus");
+                      console.log("onfocus", searchWord);
                     }}
                     onSearch={onsearch}
                     onSelect={(term) => {
-                      // if(term.length===0){
-                      //   Message({status: "warning", msg: "請輸入搜尋內容！"});
-                      //   return;
-                      // }
                       const path = "/define/" + term;
                       history.push(path);
-
                       setSearchWord(term);
-                      setOptions(allOptions);
-                      //console.log("autocomplete", autocomplete);
+                      onsearch(term)
                     }}
                   >
                     <Input.Search size="large"
-                      placeholder="嗨？ 想找甚麼ㄋ？"
+                      placeholder="嗨！ 想找什麼ㄋ？"
                       className="search-bar"
                       ref={inputField}
                       onSearch={(term) => {
@@ -200,10 +203,6 @@ function App() {
                         const path = "/define/" + term;
                         history.push(path);
                         setSearchWord(term);
-                        //console.log("inputField", inputField.current);
-                        // setTimeout(autocomplete.current.blur(), 10);
-                        // inputField.current.blur();
-                        // autocomplete.current.blur();
                       }}
                     enterButton />
                   </AutoComplete>
@@ -227,6 +226,15 @@ function App() {
             <Redirect exact={true} from="/home" to="/" />
           </Switch>
           <div className="footer" />
+          {scrollBtnVis
+            ? <Button id="scrollupbtn" onClick={() => {
+              window.scrollTo({
+                top: 0, 
+                behavior: 'smooth'
+              });
+            }}><CaretUpOutlined /></Button>
+            : null
+          }
         </div>
       </UserInfo.Provider>
 		{/* </BrowserRouter>      */}

@@ -360,3 +360,14 @@
   /* font-weight: 600; */
 }
 
+#scrollupbtn{
+  position: fixed; 
+  /*width: 100%;*/
+   right: 20px;
+   bottom: 20px;
+   /*height: 20px;*/
+   font-size: 3rem;
+   z-index: 1;
+   cursor: pointer;
+   color: darkslateblue;
+}
