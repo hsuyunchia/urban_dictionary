@@ -11,7 +11,7 @@ https://drive.google.com/file/d/1vMKYtWIXapy5wm05vC111ZVwoXRyOJRQ/view
 
 ### Deployed 連結
 
-前端：https://citydictionary.ddns.net/
+https://citydictionary.ddns.net/
 
 ### 前端操作方式
 
@@ -109,7 +109,9 @@ B07902019 資工三 江浩瑋
 ### 各組員之負責項目
 
 許芸嘉：後端API、新增頁面、按讚功能、css設計、保留登入狀態功能
+
 江宗翰：google登入功能、使用者頁面、修改頁面及功能、隱藏發布功能、部屬
+
 江浩瑋：主頁面、LOGO設計、作者/字詞檢索功能、再來一個字詞帶入功能、詞卡顯示畫面、返回頂端功能、連結到其他詞卡
 
 
