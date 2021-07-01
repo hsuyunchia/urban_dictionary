@@ -119,11 +119,13 @@ const Add = () => {
 				來定義你的詞語吧！ 
 			</div>
 			<div className="add-form">
-				<div className="title">想定義什麼詞語呢？ (必填)</div>
+				<div className="title">想定義什麼詞語呢？</div>
 				<Input placeholder="想定義什麼詞語呢?" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value);}}></Input>
-				<div className="title">它的解釋是什麼呢？ (必填)</div>
+				<div className="title">它的解釋是什麼呢？</div>
+				<p>以「[[[」和「]]]」框住想連結的詞語，例如[[[一些東西]]]即可連結到<NavLink to="/define/一些東西">一些東西</NavLink></p>
 				<Input.TextArea placeholder="它的解釋是什麼呢?" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value);}}></Input.TextArea>
-				<div className="title">造一個例句吧！ (必填)</div>
+				<div className="title">造一個例句吧！</div>
+				<p>以「[[[」和「]]]」框住想連結的詞語，例如[[[一些東西]]]即可連結到<NavLink to="/define/一些東西">一些東西</NavLink></p>
 				<Input.TextArea placeholder="造一個例句吧！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value);}} ></Input.TextArea>
 				{/* <div className="title">為它新增一些標籤吧~</div>
 				<Input.TextArea placeholder="為它新增一些標籤吧！" rows={2} className="input"></Input.TextArea> */}

@@ -101,8 +101,10 @@ const Modify = () => {
 				<div className="title">你ㄉ詞語</div>
 				<Input placeholder="不可以空白！" className="input" value={vocab} onChange={(e) => {setVocab(e.target.value.trim());}}></Input>
 				<div className="title">它ㄉ解釋</div>
+				<p>以「[[[」和「]]]」框住想連結的詞語，例如[[[一些東西]]]即可連結到<NavLink to="/define/一些東西">一些東西</NavLink></p>
 				<Input.TextArea placeholder="不可以空白！" rows={4} className="input" value={explanation} onChange={(e) => {setExplanation(e.target.value.trim());}}></Input.TextArea>
 				<div className="title">一ㄍ例句</div>
+				<p>以「[[[」和「]]]」框住想連結的詞語，例如[[[一些東西]]]即可連結到<NavLink to="/define/一些東西">一些東西</NavLink></p>
 				<Input.TextArea placeholder="不可以空白！" rows={2} className="input" value={example} onChange={(e) => {setExample(e.target.value.trim());}}></Input.TextArea>
 				{/* <div className="title">為它新增一些標籤吧~</div>
 				<Input.TextArea placeholder="為它新增一些標籤吧！" rows={2} className="input"></Input.TextArea> */}

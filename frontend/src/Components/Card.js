@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { createChainedFunction, Typography } from "@material-ui/core";
 import { ThumbUp, ThumbDown } from "@material-ui/icons";
 import { Space, Input, Button } from "antd";
@@ -22,6 +22,8 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 	}
 	const [focusAgree, setFocusAgree] = useState(fa);
 	const [focusDisagree, setFocusDisagree] = useState(fd);
+	const [expl, setExpl] = useState([]);
+	const [exam, setExam] = useState([]);
 
 	const [add_agree] = useMutation(MUT_ADD_AGREE);
 	const [add_disagree] = useMutation(MUT_ADD_DISAGREE);
@@ -31,7 +33,7 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 		{variables: {post_id}}
 	);
 	
-	useEffect(()=>{
+	useEffect(() => {
 		if(data){
 			if(data.subscribeCard.success){
 				setAgreeList(data.subscribeCard.agree_users);
@@ -39,6 +41,16 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 			}
 		}
 	}, [data, loading])
+
+	useEffect(() => {
+		const linked = linking(explanation);
+		setExpl(linked);
+	}, [explanation]);
+
+	useEffect(() => {
+		const linked = linking(example);
+		setExam(linked);
+	}, [example]);
 	
 	useEffect(() => {
 		let fat = false;
@@ -80,6 +92,61 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 		}
 	}
 
+	// const plusLink = (sentece) => {
+	// 	for(let i = 0; i < sentece.length; i++){
+
+	// 	}
+	// }
+	const linking = (sentence) => {
+		// const link = sentence.replace("[[[", "<NavLink to='/define/");
+		// const linke = link.replace(",,,", "'>");
+		// const linked = linke.replace("]]]", "</NavLink>");
+		const splited = sentence.split("[[[");
+		console.log(splited);
+		// console.log(sentence[-1]);
+		// let linked = [];
+		// for (let str )
+		const linked = splited.flatMap((str) => {
+			if(str.length === 0){
+				return [];
+			}
+			else if(str.endsWith("]]]") === true){
+				const content = str.slice(0, -3);
+				const ret = React.createElement(
+					NavLink,
+					{to: "/define/" + content},
+					content
+				);
+				return [ret];
+			}
+			else if(str.indexOf("]]]") !== -1){
+				const sspp = str.split("]]]");
+				const ret0 = React.createElement(
+					NavLink,
+					{to: "/define/" + sspp[0]},
+					sspp[0]
+				);
+				const ret1 = React.createElement(
+					"span",
+					{},
+					sspp[1]
+				);
+				return [ret0, ret1];
+			}
+			else{
+				const ret = React.createElement(
+					"span",
+					{},
+					str
+				);
+				return [ret];
+			}
+		});
+		console.log(linked);
+		// const linked = [<NavLink to='/define/QQ'>QQ</NavLink>, <span>wertyu</span>];
+		return linked;
+	}
+
 	const vocabLink = "/define/" + vocabulary;
 	const authorLink = "/author/" + author.penName;
 	const modifyLink = "/user/" + post_id;
@@ -94,8 +161,8 @@ const Card = ({post_id, vocabulary, author, explanation, example, tags, agree_us
 			<div className="vocab">
 				<p className="word"><NavLink to={vocabLink}>{vocabulary}</NavLink></p>
 			</div>
-			<div className="meaning">釋義：{explanation}</div>
-			<div className="example">例句：{example}</div>
+			<div className="meaning">釋義：{expl}</div>
+			<div className="example">例句：{exam}</div>
 			<div className="author"> </div>
 			<div className="card-footer"> 
 				{focusAgree
