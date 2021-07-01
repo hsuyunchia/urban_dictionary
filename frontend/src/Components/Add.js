@@ -22,10 +22,18 @@ const Add = () => {
 		userInfo.setSearchWord("");
 	}, []);
 	//console.log("[User] UserInfo", userInfo);
+
 	if(!userInfo.email){
-		return(
-			<Redirect exact={true} from="/add" to={{pathname: "/add/notLogin", state: {wordToBeDefine: check.state.wordToBeDefine}}} />
-		);
+		if(!check.state){
+			return(
+				<Redirect exact={true} from="/add" to={{pathname: "/add/notLogin", state: {wordToBeDefine: ""}}} />
+			);
+		}
+		else{
+			return(
+				<Redirect exact={true} from="/add" to={{pathname: "/add/notLogin", state: {wordToBeDefine: check.state.wordToBeDefine}}} />
+			);
+		}
 	}
 	console.log(userInfo.penName);
 	console.log(typeof(userInfo.penName));
